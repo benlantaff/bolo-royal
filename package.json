@@ -1,23 +1,41 @@
 {
   "name": "bolo-royal",
-  "version": "1.0.0",
-  "description": "Bolo Royal",
-  "main": "app.js",
+  "version": "1.0.6",
+  "description": "Basic electron app w/ self updates.",
+  "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "electron-builder -w",
+    "build-mac": "sudo electron-builder -m",
+    "release-windows": "electron-builder -w -p onTagOrDraft",
+    "release-mac": "sudo electron-builder -m -p onTagOrDraft"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/benlantaff/bolo-royal.git"
   },
-  "author": "Ben Lantaff (blantaff@gmail.com)",
-  "license": "ISC",
+  "keywords": [
+    "Node.js",
+    "Electron.js"
+  ],
+  "build": {
+    "appId": "benlantaff.github.com",
+    "copyright": "Copyright Ben Lantaff",
+    "publish": {
+      "provider": "github"
+    }
+  },
+  "author": "Ben Lantaff",
+  "license": "GNU GENERAL PUBLIC LICENSE v3.0",
   "bugs": {
     "url": "https://github.com/benlantaff/bolo-royal/issues"
   },
   "homepage": "https://github.com/benlantaff/bolo-royal#readme",
   "dependencies": {
-    "electron": "^30.1.0"
+    "electron-log": "^5.1.5",
+    "electron-updater": "^6.2.1"
+  },
+  "devDependencies": {
+    "electron": "^27.3.11"
   }
 }
