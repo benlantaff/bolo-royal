@@ -9,9 +9,6 @@ export default class MainScene extends Phaser.Scene {
 
   preload() {
     Player.preload(this);
-    // this.load.image("tiles", "../src/assets/bolosprites64.png");
-    // this.load.tilemapTiledJSON("map", "../src/assets/testmap.json");
-
     this.load.image("tiles", "../src/assets/basic-map-tiles.png");
     this.load.tilemapTiledJSON("map", "../src/assets/testmap2.json");
   }

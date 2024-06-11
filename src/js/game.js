@@ -2,7 +2,7 @@ import MainScene from "./MainScene.js";
 
 const config = {
   width: 512,
-  height: 512,
+  height: 306,
   backgroundColor: "#333333",
   type: Phaser.AUTO,
   parent: "game",
