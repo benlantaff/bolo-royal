@@ -8,14 +8,14 @@ let mainWindow;
 let updateWindow;
 
 /* Switch env to 'Dev' while you are working in development mode */
-//let env = "Prod";
-let env = "Dev";
+let env = "Prod";
+//let env = "Dev";
 
 /* Create a new BrowserWindow when `app` is ready */
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 700,
-    height: 500,
+    width: 900,
+    height: 700,
     frame: false,
     resizable: false,
     webSecurity: false,
@@ -30,8 +30,8 @@ function createWindow() {
   });
 
   updateWindow = new BrowserWindow({
-    width: 300,
-    height: 200,
+    width: 400,
+    height: 300,
     frame: false,
     resizable: false,
     show: false,

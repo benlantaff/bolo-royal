@@ -1,8 +1,8 @@
 body {
-  background-color: #1e1e1e;
+  background-color: #ffffff;
   overflow: hidden;
   text-align: center;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .draggable {
