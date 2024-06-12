@@ -1,5 +1,4 @@
 import Player from "./Player.js";
-import { debugDraw } from "./Utils.js";
 
 export default class MainScene extends Phaser.Scene {
   constructor() {
@@ -38,15 +37,6 @@ export default class MainScene extends Phaser.Scene {
     const bottom = map.createLayer("Bottom", tileset, 0, 0).setScale(1.25);
     const top = map.createLayer("Top", tileset, 0, 0).setScale(1.25);
 
-    // top.setCollisionByProperty({ collides: true });
-    // bottom.setCollisionByProperty({ collides: true });
-
-    // If debug is enabled, draw the collision map layers
-    // if (this.game.config.physics.matter.debug) {
-    //   debugDraw(top, this);
-    //   debugDraw(bottom, this);
-    // }
-
     this.matter.world.convertTilemapLayer(top);
     this.matter.world.convertTilemapLayer(bottom);
 
@@ -57,12 +47,16 @@ export default class MainScene extends Phaser.Scene {
       texture: "tank",
       frame: "tank1",
     }).setScale(0.3);
+
     this.add.existing(this.player);
+
     this.player.inputKeys = this.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
       down: Phaser.Input.Keyboard.KeyCodes.S,
       left: Phaser.Input.Keyboard.KeyCodes.A,
       right: Phaser.Input.Keyboard.KeyCodes.D,
+      space: Phaser.Input.Keyboard.KeyCodes.SPACE,
+      x: Phaser.Input.Keyboard.KeyCodes.X,
     });
 
     this.cameras.main.setBounds(0, 0, "100%", "100%");
