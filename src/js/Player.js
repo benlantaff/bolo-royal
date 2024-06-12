@@ -1,3 +1,4 @@
+import Bullet from "./Bullet.js";
 export default class Player extends Phaser.Physics.Matter.Sprite {
   constructor(data) {
     let { scene, x, y, texture, frame } = data;
@@ -22,6 +23,18 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
     });
 
     this.setExistingBody(compoundBody);
+    this.inputKeys = scene.input.keyboard.addKeys({
+      left: Phaser.Input.Keyboard.KeyCodes.LEFT,
+      right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
+      up: Phaser.Input.Keyboard.KeyCodes.UP,
+      down: Phaser.Input.Keyboard.KeyCodes.DOWN,
+      space: Phaser.Input.Keyboard.KeyCodes.SPACE,
+    });
+
+    this.bullets = scene.add.group({
+      classType: Bullet,
+      runChildUpdate: true,
+    });
   }
 
   static preload(scene) {
@@ -31,6 +44,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
       "../src/assets/tank_atlas.png",
       "../src/assets/tank_atlas.json"
     );
+    scene.load.image("bullet", "../src/assets/bullet.png");
   }
 
   update() {
@@ -38,7 +52,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
     let playerVelocity = new Phaser.Math.Vector2();
 
     if (this.inputKeys.left.isDown) {
-      this.angle += -1.5;
+      this.angle -= 1.5;
     } else if (this.inputKeys.right.isDown) {
       this.angle += 1.5;
     }
@@ -46,17 +60,25 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
     if (this.inputKeys.up.isDown) {
       playerVelocity.y = -1;
       playerVelocity.setToPolar(this.rotation, 1);
-    } else if (this.inputKeys.down.isDown) {
     }
 
-    if (this.inputKeys.x.isDown) {
-      console.log("laying mine");
-    } else if (this.inputKeys.space.isDown) {
-      console.log("firing bullet");
+    if (Phaser.Input.Keyboard.JustDown(this.inputKeys.space)) {
+      this.fireBullet();
     }
 
     playerVelocity.normalize();
     playerVelocity.scale(speed);
     this.setVelocity(playerVelocity.x, playerVelocity.y);
+  }
+
+  fireBullet() {
+    const bullet = this.bullets.getFirstDead(false);
+    if (bullet) {
+      bullet.fire(this.x, this.y, this.rotation);
+    } else {
+      const newBullet = new Bullet(this.scene, this.x, this.y, "bullet");
+      this.bullets.add(newBullet);
+      newBullet.fire(this.x, this.y, this.rotation);
+    }
   }
 }
