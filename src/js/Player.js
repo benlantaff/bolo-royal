@@ -62,7 +62,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
       playerVelocity.setToPolar(this.rotation, 1);
     }
 
-    if (Phaser.Input.Keyboard.JustDown(this.inputKeys.space)) {
+    if (this.inputKeys.space.isDown) {
       this.fireBullet();
     }
 
