@@ -49,8 +49,6 @@ export default class Bullet extends Phaser.Physics.Matter.Sprite {
     ) {
       this.setActive(false);
       this.setVisible(false);
-      this.setVelocity(0, 0); // Stop the bullet's movement
-      //this.body = null; // Optional: Destroy the body to free up memory
       this.destroy();
     }
   }

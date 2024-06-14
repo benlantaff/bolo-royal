@@ -8,8 +8,8 @@ let mainWindow;
 let updateWindow;
 
 /* Switch env to 'Dev' while you are working in development mode */
-let env = "Prod";
-//let env = "Dev";
+//let env = "Prod";
+let env = "Dev";
 
 /* Create a new BrowserWindow when `app` is ready */
 function createWindow() {
